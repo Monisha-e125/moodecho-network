@@ -1,0 +1,403 @@
+/* Walk Lobby */
+.walk-lobby {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.walk-lobby-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.walk-lobby-header h1 {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.walk-lobby-header p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.walk-intro {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.walk-feature {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.walk-feature h3 {
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.walk-feature p {
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+.walk-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.walk-tips {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.walk-tips h3 {
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.walk-tips ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.walk-tips li {
+  padding-left: 1.5rem;
+  position: relative;
+  color: var(--gray);
+}
+
+.walk-tips li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-weight: bold;
+}
+
+/* Walk Experience */
+.walk-experience {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+.walk-ambient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: ambientPulse 10s ease-in-out infinite;
+}
+
+@keyframes ambientPulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+.ambient-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:  radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: particleFloat 20s linear infinite;
+}
+
+@keyframes particleFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50px); }
+}
+
+.walk-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.walk-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.walk-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.walk-description {
+  font-size: 1.1rem;
+  opacity: 0.95;
+}
+
+.walk-start {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.walk-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.walk-info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+.info-icon {
+  font-size: 2rem;
+}
+
+.walk-sounds,
+.walk-checkpoints {
+  margin-bottom: 2rem;
+}
+
+.walk-sounds h3,
+.walk-checkpoints h3 {
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.sound-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sound-tag {
+  padding: 0.5rem 1rem;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.checkpoint-preview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.checkpoint-number {
+  width: 30px;
+  height: 30px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.checkpoint-time {
+  color: var(--gray);
+  font-size: 0.9rem;
+  min-width: 60px;
+}
+
+.checkpoint-preview p {
+  color: var(--dark);
+}
+
+/* Active Walk */
+.walk-active {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+}
+
+.walk-timer {
+  margin-bottom: 3rem;
+}
+
+.walk-timer h3 {
+  font-size: 4rem;
+  color: var(--primary);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.walk-timer p {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+
+.progress-container {
+  margin-bottom: 2rem;
+}
+
+.progress-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.progress-bar {
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 1s linear;
+  border-radius: 10px;
+}
+
+.progress-fill.partner {
+  background: linear-gradient(90deg, var(--success), #34d399);
+}
+
+.progress-percent {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.current-checkpoint {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.checkpoint-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.checkpoint-message {
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+.visual-elements {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+/* Dashboard */
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.tab {
+  flex: 1;
+  padding: 0.875rem;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--gray);
+}
+
+.tab:hover {
+  background: #f9fafb;
+}
+
+.tab.active {
+  background: var(--primary);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .walk-info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .walk-timer h3 {
+    font-size: 3rem;
+  }
+  
+  .dashboard-tabs {
+    flex-direction: column;
+  }
+}
