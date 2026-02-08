@@ -1,0 +1,30 @@
+services:
+  # Backend API
+  - type: web
+    name: moodecho-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: moodecho-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: ALLOWED_ORIGINS
+        value: https://moodecho-backend.onrender.com
+      - key: LOG_LEVEL
+        value: info
+
+databases:
+  # MongoDB
+  - name: moodecho-db
+    plan: free
