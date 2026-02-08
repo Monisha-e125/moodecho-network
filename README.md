@@ -50,7 +50,7 @@
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/moodecho-network.git
+git clone https://github.com//
 cd moodecho-network
 ```
 
@@ -112,9 +112,8 @@ npm run dev
 ```
 
 8. **Access the application**
-- Frontend: http://localhost:3000
-- Backend: http://localhost:8000
-- API Docs: http://localhost:8000/api-docs
+- App: http://localhost:3000
+
 
 ## 🐳 Docker Deployment
 ```bash
@@ -219,7 +218,7 @@ MIT License - see [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 Name : Monisha E
-- GitHub: [@YOUR_USERNAME](https://github.com/Monisha-e125/moodecho-network.git)
+- GitHub: [@Monisha](https://github.com/Monisha-e125/)
 - LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/monisha-e-000a59332/)
 - Email: monishae2830@gmail.com
 
