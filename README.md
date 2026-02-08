@@ -220,7 +220,7 @@ MIT License - see [LICENSE](LICENSE) file
 
 Name : Monisha E
 - GitHub: [@Monisha](https://github.com/Monisha-e125/moodecho-network.git)
-- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/monisha-e-000a59332/)
+- LinkedIn: [Monisha E](https://www.linkedin.com/in/monisha-e-000a59332/)
 - Email: monishae2830@gmail.com
 
 ## 🙏 Acknowledgments
