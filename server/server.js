@@ -6,85 +6,83 @@ const connectRedis = require('./src/config/redis');
 const logger = require('./src/utils/logger');
 require('dotenv').config();
 
-// Create HTTP server
+// Create HTTP server (IMPORTANT for Render + Socket.IO)
 const server = http.createServer(app);
 
 // Initialize Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
+    origin: process.env.ALLOWED_ORIGINS
+      ? process.env.ALLOWED_ORIGINS.split(',')
+      : '*',
     methods: ['GET', 'POST']
   }
 });
 
-// Make io accessible to routes
+// Make io accessible
 app.set('io', io);
 
-// BETTER ERROR HANDLING - Shows actual error
+
+// ================= ERROR HANDLING ================= //
+
 process.on('uncaughtException', (err) => {
   logger.error('UNCAUGHT EXCEPTION! 💥 Shutting down...');
-  logger.error('Error name:', err.name);
-  logger.error('Error message:', err.message);
-  logger.error('Error stack:', err.stack);  // ← This shows WHERE the error is!
-  console.error('\n=== FULL ERROR ===');
-  console.error(err);
-  console.error('==================\n');
+  logger.error(err.stack);
   process.exit(1);
 });
 
 process.on('unhandledRejection', (err) => {
   logger.error('UNHANDLED REJECTION! 💥 Shutting down...');
-  logger.error('Error name:', err.name);
-  logger.error('Error message:', err.message);
-  logger.error('Error stack:', err.stack);
-  console.error('\n=== FULL ERROR ===');
-  console.error(err);
-  console.error('==================\n');
+  logger.error(err.stack);
+
   server.close(() => {
     process.exit(1);
   });
 });
 
-// Start server function
+
+// ================= START SERVER ================= //
+
 const startServer = async () => {
   try {
-    // Connect to MongoDB
-    await connectDB();
-    logger.info('✓ Database connected');
 
-    // Try to connect to Redis (optional)
+    // ✅ Connect MongoDB
+    await connectDB();
+    logger.info('✅ Database connected');
+
+    // ✅ Redis (OPTIONAL — skip if not configured)
     try {
-      await connectRedis();
-      logger.info('✓ Redis connected');
+      if (process.env.REDIS_URL) {
+        await connectRedis();
+        logger.info('✅ Redis connected');
+      } else {
+        logger.warn('⚠ Redis not configured — skipping');
+      }
     } catch (error) {
-      logger.warn('⚠ Redis connection skipped (optional)');
+      logger.warn('⚠ Redis connection failed — skipping');
     }
 
-    // Initialize Socket.IO service
+    // ✅ Initialize Socket Service
     const socketService = require('./src/services/socketService');
     socketService.initialize(io);
-    logger.info('✓ Socket.IO service initialized');
 
-    // Start HTTP server
+    // ⭐ VERY IMPORTANT FOR RENDER
     const PORT = process.env.PORT || 4000;
+
     server.listen(PORT, () => {
       logger.info('==================================================');
       logger.info('🚀 MoodEcho Network Server Running');
-      logger.info(`   Environment: ${process.env.NODE_ENV || 'development'}`);
-      logger.info(`   Port: ${PORT}`);
-      logger.info(`   URL: http://localhost:${PORT}`);
-      logger.info(`   Health: http://localhost:${PORT}/health`);
+      logger.info(`Environment : ${process.env.NODE_ENV || 'production'}`);
+      logger.info(`Port        : ${PORT}`);
       logger.info('==================================================');
     });
 
   } catch (error) {
-    logger.error('Failed to start server:', error);
-    console.error('\n=== STARTUP ERROR ===');
-    console.error(error);
-    console.error('=====================\n');
+    logger.error('❌ Failed to start server');
+    logger.error(error.stack);
     process.exit(1);
   }
 };
 
-// Start the server
+// START
 startServer();

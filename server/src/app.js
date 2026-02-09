@@ -9,6 +9,7 @@ const { apiLimiter } = require('./middlewares/rateLimiter');
 const { sanitizeBody, sanitizeQuery } = require('./middlewares/sanitizer');
 const metrics = require('./utils/metrics');
 const performanceMonitor = require('./utils/performance');
+require('dotenv').config();
 // Create Express app
 const app = express();
 
@@ -84,6 +85,32 @@ app.use('*', (req, res) => {
     message: `Route ${req.originalUrl} not found`
   });
 });
+
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'MoodEcho API is running 🚀'
+  });
+});
+app.use(cors({
+  origin: function(origin, callback) {
+    // allow requests with no origin like mobile apps or curl
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
+}));
+
+// Body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // Global error handler (must be last)
 app.use(errorHandler);

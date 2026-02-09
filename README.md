@@ -82,7 +82,7 @@ JWT_EXPIRES_IN=7d
 LOG_LEVEL=info
 
 # CORS
-ALLOWED_ORIGINS=http://localhost:3000,http://localhost:4000
+ALLOWED_ORIGINS=http://localhost:3000
 
 # Rate Limiting
 RATE_LIMIT_WINDOW_MS=900000
