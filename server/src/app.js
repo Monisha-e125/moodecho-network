@@ -3,55 +3,71 @@ const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
+require('dotenv').config();
+
 const logger = require('./utils/logger');
 const { errorHandler } = require('./middlewares/errorHandler');
 const { apiLimiter } = require('./middlewares/rateLimiter');
 const { sanitizeBody, sanitizeQuery } = require('./middlewares/sanitizer');
 const metrics = require('./utils/metrics');
 const performanceMonitor = require('./utils/performance');
-require('dotenv').config();
-// Create Express app
+
 const app = express();
 
-// Security middleware
+
+// ✅ SECURITY
 app.use(helmet());
-
-// CORS configuration
-const corsOptions = {
-  origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
-  credentials: true,
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
-
-// Compression middleware
 app.use(compression());
 
-// Body parsing middleware
+
+// ✅ CORS (ONLY ONCE!)
+app.use(cors({
+  origin: '*', // Later you can restrict to your frontend URL
+  credentials: true
+}));
+
+
+// ✅ BODY PARSER (ONLY ONCE)
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
 app.use(sanitizeBody);
 app.use(sanitizeQuery);
-// Logging middleware
+
+
+// ✅ LOGGING
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 } else {
   app.use(morgan('combined', { stream: logger.stream }));
 }
-//add after logging middleware
+
+
+// ✅ PERFORMANCE TRACKING
 app.use((req, res, next) => {
   const start = Date.now();
-  
+
   metrics.trackRequest(req);
-  
+
   res.on('finish', () => {
     const duration = Date.now() - start;
     metrics.trackResponseTime(duration);
   });
-  
+
   next();
 });
-// Health check endpoint
+
+
+// ✅ ROOT ROUTE (VERY IMPORTANT)
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'MoodEcho API is running 🚀'
+  });
+});
+
+
+// ✅ HEALTH CHECK
 app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
@@ -60,25 +76,36 @@ app.get('/health', (req, res) => {
     environment: process.env.NODE_ENV
   });
 });
+
+
+// ✅ METRICS
 app.get('/metrics', (req, res) => {
   res.json({
     status: 'success',
     data: metrics.getMetrics()
   });
 });
+
 app.get('/performance', (req, res) => {
   res.json({
     status: 'success',
     data: performanceMonitor.getReport()
   });
 });
-// API Routes
+
+
+// ✅ RATE LIMITER
+app.use('/api/', apiLimiter);
+
+
+// ✅ API ROUTES
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/mood', require('./routes/mood'));
 app.use('/api/match', require('./routes/match'));
 app.use('/api/walk', require('./routes/walk'));
-app.use('/api/', apiLimiter);
-// 404 handler
+
+
+// ✅ 404 MUST BE LAST
 app.use('*', (req, res) => {
   res.status(404).json({
     status: 'fail',
@@ -86,33 +113,8 @@ app.use('*', (req, res) => {
   });
 });
 
-app.get('/', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'MoodEcho API is running 🚀'
-  });
-});
-app.use(cors({
-  origin: function(origin, callback) {
-    // allow requests with no origin like mobile apps or curl
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-  allowedHeaders: ['Content-Type','Authorization']
-}));
 
-// Body parser
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
-// Global error handler (must be last)
+// ✅ GLOBAL ERROR HANDLER (LAST LAST)
 app.use(errorHandler);
 
 module.exports = app;
