@@ -5,7 +5,7 @@ const connectDB = require('./src/config/database');
 const connectRedis = require('./src/config/redis');
 const logger = require('./src/utils/logger');
 require('dotenv').config();
-
+const cors = require("cors");
 // Create HTTP server (IMPORTANT for Render + Socket.IO)
 const server = http.createServer(app);
 
@@ -83,6 +83,9 @@ const startServer = async () => {
     process.exit(1);
   }
 };
+app.use(cors({
+    origin: "*"
+}));
 
 // START
 startServer();
