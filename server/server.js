@@ -84,7 +84,7 @@ const startServer = async () => {
   }
 };
 app.use(cors({
-    origin: "*"
+  origin: "*"
 }));
 
 // START

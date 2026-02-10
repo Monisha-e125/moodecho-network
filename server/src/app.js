@@ -58,13 +58,7 @@ app.use((req, res, next) => {
 });
 
 
-// ✅ ROOT ROUTE (VERY IMPORTANT)
-app.get('/', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'MoodEcho API is running 🚀'
-  });
-});
+// ✅ ROOT ROUTE REMOVED (Handled by Frontend)
 
 
 // ✅ HEALTH CHECK
@@ -105,12 +99,13 @@ app.use('/api/match', require('./routes/match'));
 app.use('/api/walk', require('./routes/walk'));
 
 
-// ✅ 404 MUST BE LAST
-app.use('*', (req, res) => {
-  res.status(404).json({
-    status: 'fail',
-    message: `Route ${req.originalUrl} not found`
-  });
+// ✅ SERVE FRONTEND (Added for Full Stack)
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../../client/dist')));
+
+// Handle React Routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
 });
 
 
