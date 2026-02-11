@@ -202,3 +202,103 @@ body {
     justify-content: center;
   }
 }
+/* ========================================
+   DARK MODE THEME
+   ======================================== */
+
+[data-theme="dark"] {
+  /* Background colors */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  
+  /* Text colors */
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  
+  /* Border colors */
+  --border-color: #334155;
+  
+  /* Card backgrounds */
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+}
+
+/* Default Light Mode */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  
+  --border-color: #e5e7eb;
+  
+  --card-bg: #ffffff;
+  --card-hover: #f9fafb;
+}
+
+/* Apply theme variables */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Update existing styles to use variables */
+.mood-logger,
+.mood-history,
+.mood-stats,
+.auth-card,
+.walk-lobby {
+  background: var(--card-bg);
+  color: var(--text-primary);
+}
+
+.mood-card {
+  background: var(--bg-secondary);
+}
+
+.mood-card:hover {
+  background: var(--card-hover);
+}
+
+input, textarea {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+input:focus, textarea:focus {
+  background: var(--bg-primary);
+}
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.1) rotate(20deg);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode-toggle:active {
+  transform: scale(0.95);
+}

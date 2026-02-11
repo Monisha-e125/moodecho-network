@@ -9,7 +9,7 @@ import Dashboard from './pages/Dashboard';
 import WalkLobby from './components/Walk/WalkLobby';
 import WalkExperience from './components/Walk/WalkExperience';
 import './assets/styles/global.css';
-
+import DarkModeToggle from './components/Common/DarkModeToggle';
 export default function App() {
   return (
     <AuthProvider>
@@ -41,6 +41,21 @@ export default function App() {
               
               <Route path="/" element={<Navigate to="/dashboard" />} />
             </Routes>
+          </main>
+        </div>
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}
+export default function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <div className="app">
+          <Navbar />
+          <DarkModeToggle /> {/* ← Add this */}
+          <main className="main-content">
+            {/* ... routes ... */}
           </main>
         </div>
       </BrowserRouter>
