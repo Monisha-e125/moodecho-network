@@ -28,7 +28,7 @@
 }
 
 .walk-feature {
-  background: white;
+  background: var(--card-bg);
   padding: 2rem;
   border-radius: 16px;
   text-align: center;
@@ -43,7 +43,7 @@
 
 .walk-feature h3 {
   margin-bottom: 0.5rem;
-  color: var(--dark);
+  color: var(--text-primary);
 }
 
 .walk-feature p {
@@ -59,7 +59,7 @@
 }
 
 .walk-tips {
-  background: white;
+  background: var(--card-bg);
   padding: 2rem;
   border-radius: 16px;
   box-shadow: var(--shadow);
@@ -108,22 +108,34 @@
 }
 
 @keyframes ambientPulse {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .ambient-particles {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image:  radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
   animation: particleFloat 20s linear infinite;
 }
 
 @keyframes particleFloat {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50px); }
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50px);
+  }
 }
 
 .walk-content {
@@ -151,7 +163,8 @@
 }
 
 .walk-start {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--card-bg);
+  /* Simplified for dark mode compatibility */
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 2rem;
@@ -170,7 +183,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: #f9fafb;
+  background: var(--bg-secondary);
   border-radius: 12px;
 }
 
@@ -208,7 +221,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: #f9fafb;
+  background: var(--bg-secondary);
   border-radius: 8px;
   margin-bottom: 0.75rem;
 }
@@ -238,7 +251,7 @@
 
 /* Active Walk */
 .walk-active {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--card-bg);
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 3rem;
@@ -309,6 +322,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -360,7 +374,7 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 2rem;
-  background: white;
+  background: var(--card-bg);
   padding: 0.5rem;
   border-radius: 12px;
   box-shadow: var(--shadow);
@@ -392,11 +406,11 @@
   .walk-info-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .walk-timer h3 {
     font-size: 3rem;
   }
-  
+
   .dashboard-tabs {
     flex-direction: column;
   }

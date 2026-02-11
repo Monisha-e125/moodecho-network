@@ -7,7 +7,7 @@
 }
 
 .auth-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 16px;
   padding: 3rem;
   width: 100%;
@@ -27,7 +27,7 @@
 
 .auth-header h2 {
   font-size: 1.75rem;
-  color: var(--dark);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
@@ -50,14 +50,16 @@
 
 .form-group label {
   font-weight: 500;
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group textarea {
   padding: 0.875rem;
-  border: 2px solid #e5e7eb;
+  border: 2px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.2s;

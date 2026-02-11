@@ -1,6 +1,6 @@
 /* Mood Logger */
 .mood-logger {
-  background: white;
+  background: var(--card-bg);
   border-radius: 16px;
   padding: 2rem;
   box-shadow: var(--shadow);
@@ -20,6 +20,7 @@
 .mood-logger-header p {
   color: var(--gray);
 }
+
 .category-filters {
   display: flex;
   gap: 0.5rem;
@@ -30,16 +31,17 @@
 
 .category-filters button {
   padding: 0.5rem 1rem;
-  border: 2px solid #e5e7eb;
-  background: white;
+  border: 2px solid var(--border-color);
+  background: var(--bg-secondary);
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.2s;
+  color: var(--text-primary);
 }
 
 .category-filters button:hover {
-  background: #f3f4f6;
+  background: var(--bg-tertiary);
 }
 
 .category-filters button.active {
@@ -47,6 +49,7 @@
   color: white;
   border-color: transparent;
 }
+
 .mood-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -82,8 +85,8 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1.5rem 1rem;
-  background: #f9fafb;
-  border: 2px solid #e5e7eb;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s;
@@ -129,6 +132,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -173,7 +177,7 @@
 
 /* Mood History */
 .mood-history {
-  background: white;
+  background: var(--card-bg);
   border-radius: 16px;
   padding: 2rem;
   box-shadow: var(--shadow);
@@ -195,8 +199,8 @@
 
 .filter-buttons button {
   padding: 0.5rem 1rem;
-  border: 2px solid #e5e7eb;
-  background: white;
+  border: 2px solid var(--border-color);
+  background: var(--bg-secondary);
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
@@ -221,7 +225,7 @@
 
 /* Mood Card */
 .mood-card {
-  background: #f9fafb;
+  background: var(--bg-secondary);
   border-radius: 12px;
   padding: 1.5rem;
   transition: all 0.2s;
@@ -339,7 +343,7 @@
 
 /* Mood Stats */
 .mood-stats {
-  background: white;
+  background: var(--card-bg);
   border-radius: 16px;
   padding: 2rem;
   box-shadow: var(--shadow);
@@ -434,7 +438,7 @@
   align-items: start;
   gap: 0.75rem;
   padding: 1rem;
-  background: white;
+  background: var(--card-bg);
   border-radius: 8px;
 }
 
@@ -446,7 +450,7 @@
 
 .trend-card {
   padding: 1.5rem;
-  background: white;
+  background: var(--card-bg);
   border-radius: 8px;
   border-left: 4px solid;
 }
@@ -531,12 +535,12 @@
   .mood-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .mood-history-header {
     flex-direction: column;
     align-items: start;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
   }

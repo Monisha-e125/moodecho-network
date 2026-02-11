@@ -15,7 +15,7 @@
   --gray: #6b7280;
   --light: #f3f4f6;
   --white: #ffffff;
-  
+
   --radius: 12px;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
@@ -154,7 +154,9 @@ body {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Cards */
@@ -190,55 +192,57 @@ body {
   .main-content {
     padding: 1rem;
   }
-  
+
   .navbar {
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
   }
-  
+
   .navbar-links {
     width: 100%;
     justify-content: center;
   }
 }
+
+/* ========================================
+   DEFAULT THEME (Light)
+   ======================================== */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+
+  --border-color: #e5e7eb;
+
+  --card-bg: #ffffff;
+  --card-hover: #f9fafb;
+}
+
 /* ========================================
    DARK MODE THEME
    ======================================== */
-
 [data-theme="dark"] {
   /* Background colors */
   --bg-primary: #0f172a;
   --bg-secondary: #1e293b;
   --bg-tertiary: #334155;
-  
+
   /* Text colors */
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
-  
+
   /* Border colors */
   --border-color: #334155;
-  
+
   /* Card backgrounds */
   --card-bg: #1e293b;
   --card-hover: #334155;
-}
-
-/* Default Light Mode */
-:root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --bg-tertiary: #f3f4f6;
-  
-  --text-primary: #1f2937;
-  --text-secondary: #4b5563;
-  --text-muted: #6b7280;
-  
-  --border-color: #e5e7eb;
-  
-  --card-bg: #ffffff;
-  --card-hover: #f9fafb;
 }
 
 /* Apply theme variables */
@@ -266,15 +270,18 @@ body {
   background: var(--card-hover);
 }
 
-input, textarea {
+input,
+textarea {
   background: var(--bg-secondary);
   color: var(--text-primary);
   border-color: var(--border-color);
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   background: var(--bg-primary);
 }
+
 .dark-mode-toggle {
   position: fixed;
   top: 20px;
