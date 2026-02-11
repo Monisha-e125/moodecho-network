@@ -16,46 +16,32 @@ export default function App() {
       <BrowserRouter>
         <div className="app">
           <Navbar />
+          <DarkModeToggle />
           <main className="main-content">
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              
+
               <Route path="/dashboard" element={
                 <ProtectedRoute>
                   <Dashboard />
                 </ProtectedRoute>
               } />
-              
+
               <Route path="/walk" element={
                 <ProtectedRoute>
                   <WalkLobby />
                 </ProtectedRoute>
               } />
-              
+
               <Route path="/walk/:walkId" element={
                 <ProtectedRoute>
                   <WalkExperience />
                 </ProtectedRoute>
               } />
-              
+
               <Route path="/" element={<Navigate to="/dashboard" />} />
             </Routes>
-          </main>
-        </div>
-      </BrowserRouter>
-    </AuthProvider>
-  );
-}
-export default function App() {
-  return (
-    <AuthProvider>
-      <BrowserRouter>
-        <div className="app">
-          <Navbar />
-          <DarkModeToggle /> {/* ← Add this */}
-          <main className="main-content">
-            {/* ... routes ... */}
           </main>
         </div>
       </BrowserRouter>
