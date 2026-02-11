@@ -99,13 +99,14 @@ app.use('/api/match', require('./routes/match'));
 app.use('/api/walk', require('./routes/walk'));
 
 
-// ✅ SERVE FRONTEND (Added for Full Stack)
-const path = require('path');
-app.use(express.static(path.join(__dirname, '../../client/dist')));
-
-// Handle React Routing
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+// ✅ ROOT ROUTE (API Status)
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: ' MoodEcho Network API is running',
+    environment: process.env.NODE_ENV,
+    timestamp: new Date()
+  });
 });
 
 
