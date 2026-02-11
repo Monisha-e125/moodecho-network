@@ -49,12 +49,12 @@ exports.getMoodStats = catchAsync(async (req, res, next) => {
       insights
     };
   });
- res.json({
+  res.json({
     status: 'success',
     data: stats
   });
 });
-  
+
 // Log a new mood
 exports.logMood = catchAsync(async (req, res, next) => {
   const { emoji, moodScore, note, tags, context } = req.body;
@@ -71,7 +71,7 @@ exports.logMood = catchAsync(async (req, res, next) => {
 
   // Get user's average mood for anomaly detection
   const userMoods = await Mood.find({ userId }).select('moodScore');
-  const avgMood = userMoods.length 
+  const avgMood = userMoods.length
     ? userMoods.reduce((sum, m) => sum + m.moodScore, 0) / userMoods.length
     : moodScore;
 
@@ -97,7 +97,7 @@ exports.logMood = catchAsync(async (req, res, next) => {
     $inc: { 'stats.totalMoods': 1 },
     'moodProfile.lastAnalyzed': new Date()
   });
-const streakUpdate = await streakService.updateStreak(req.user._id);
+  const streakUpdate = await streakService.updateStreak(req.user._id);
   // Get prediction
   const prediction = await aiService.predictMoodTrend(userId);
 
@@ -112,7 +112,7 @@ const streakUpdate = await streakService.updateStreak(req.user._id);
         prediction,
         isAnomaly: mood.isAnomaly,
         sentiment: sentimentData,
-        streak: streakupdate
+        streak: streakUpdate
       }
     }
   });
