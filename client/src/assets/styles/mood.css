@@ -20,12 +20,60 @@
 .mood-logger-header p {
   color: var(--gray);
 }
+.category-filters {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
+.category-filters button {
+  padding: 0.5rem 1rem;
+  border: 2px solid #e5e7eb;
+  background: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.category-filters button:hover {
+  background: #f3f4f6;
+}
+
+.category-filters button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+}
 .mood-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1rem;
   margin-bottom: 2rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+/* Add scrollbar styling */
+.mood-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mood-grid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.mood-grid::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.mood-grid::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .mood-button {
