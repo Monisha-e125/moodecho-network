@@ -58,7 +58,32 @@ const userSchema = new mongoose.Schema({
   lastLogin: {
     type: Date,
     default: null
-  }
+  },
+  streak: {
+    current: {
+      type: Number,
+      default: 0
+    },
+    longest: {
+      type: Number,
+      default: 0
+    },
+    lastLogDate: {
+      type: Date,
+      default: null
+    }
+  },
+  
+  achievements: [{
+    type: {
+      type: String,
+      required: true
+    },
+    unlockedAt: {
+      type: Date,
+      default: Date.now
+    }
+  }]
 }, {
   timestamps: true,
   toJSON: {

@@ -4,7 +4,7 @@ import MoodHistory from '../components/Mood/MoodHistory';
 import MoodStats from '../components/Mood/MoodStats';
 import MoodCard from '../components/Mood/MoodCard';
 import { useAuth } from '../context/AuthContext';
-
+import StreakDisplay from '../components/Mood/StreakDisplay';
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('log');
   const [refreshKey, setRefreshKey] = useState(0);
@@ -22,6 +22,8 @@ export default function Dashboard() {
         <h1>Welcome back, {user.username}! 👋</h1>
         <p>Track your moods, discover patterns, and connect with others</p>
       </div>
+      {/* Add streak display */}
+      <StreakDisplay userId={user.id} />
 
       <div className="dashboard-tabs">
         <button

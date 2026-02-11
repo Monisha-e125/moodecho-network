@@ -6,7 +6,7 @@ const { catchAsync } = require('../middlewares/errorHandler');
 const { getTimeOfDay, getPaginationData } = require('../utils/helpers');
 const logger = require('../utils/logger');
 const cacheService = require('../services/cacheService');
-
+const streakService = require('../services/streakService');
 // Replace existing getMoodStats function
 exports.getMoodStats = catchAsync(async (req, res, next) => {
   const userId = req.user._id;
@@ -97,7 +97,7 @@ exports.logMood = catchAsync(async (req, res, next) => {
     $inc: { 'stats.totalMoods': 1 },
     'moodProfile.lastAnalyzed': new Date()
   });
-
+const streakUpdate = await streakService.updateStreak(req.user._id);
   // Get prediction
   const prediction = await aiService.predictMoodTrend(userId);
 
@@ -111,7 +111,8 @@ exports.logMood = catchAsync(async (req, res, next) => {
         weekPattern,
         prediction,
         isAnomaly: mood.isAnomaly,
-        sentiment: sentimentData
+        sentiment: sentimentData,
+        streak: streakupdate
       }
     }
   });
