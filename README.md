@@ -113,7 +113,7 @@ npm run dev
 ```
 
 8. **Access the application**
-- App: http://localhost:3000
+- App: https://moodecho-network-rhh3.vercel.app
 
 
 ## 🐳 Docker Deployment
