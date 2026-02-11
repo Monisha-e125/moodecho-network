@@ -9,8 +9,7 @@ const moodSchema = new mongoose.Schema({
   },
   emoji: {
     type: String,
-    required: true,
-    enum: ['😢', '😊', '😤', '😴', '😰', '😌', '🤗', '😔']
+    required: true
   },
   moodScore: {
     type: Number,
@@ -27,7 +26,7 @@ const moodSchema = new mongoose.Schema({
     type: String,
     trim: true
   }],
-  
+
   context: {
     timeOfDay: {
       type: String,
@@ -36,7 +35,7 @@ const moodSchema = new mongoose.Schema({
     weather: String,
     location: String
   },
-  
+
   sentiment: {
     type: String,
     enum: ['very_negative', 'negative', 'neutral', 'positive', 'very_positive']
@@ -45,13 +44,13 @@ const moodSchema = new mongoose.Schema({
     type: String,
     confidence: Number
   }],
-  
+
   weekPattern: [String],
   isAnomaly: {
     type: Boolean,
     default: false
   },
-  
+
   timestamp: {
     type: Date,
     default: Date.now,
@@ -68,7 +67,7 @@ moodSchema.index({ userId: 1, timestamp: -1 });
 moodSchema.index({ userId: 1, sentiment: 1 });
 
 // Virtual for day of week
-moodSchema.virtual('dayOfWeek').get(function() {
+moodSchema.virtual('dayOfWeek').get(function () {
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   return days[this.timestamp.getDay()];
 });
