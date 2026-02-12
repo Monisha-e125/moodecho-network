@@ -17,6 +17,15 @@ class StreakService {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
+            // Ensure streak object exists
+            if (!user.streak) {
+                user.streak = {
+                    current: 0,
+                    longest: 0,
+                    lastLogDate: null
+                };
+            }
+
             // First mood ever
             if (!user.streak.lastLogDate) {
                 user.streak.current = 1;

@@ -11,13 +11,13 @@
 
 .walk-lobby-header h1 {
   font-size: 3rem;
-  color: white;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .walk-lobby-header p {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
 }
 
 .walk-intro {
@@ -149,7 +149,7 @@
 .walk-header {
   text-align: center;
   margin-bottom: 3rem;
-  color: white;
+  color: var(--text-primary);
 }
 
 .walk-header h2 {
@@ -357,7 +357,7 @@
 .dashboard-header {
   text-align: center;
   margin-bottom: 2rem;
-  color: white;
+  color: var(--text-primary);
 }
 
 .dashboard-header h1 {
@@ -367,7 +367,7 @@
 
 .dashboard-header p {
   font-size: 1.1rem;
-  opacity: 0.9;
+  color: var(--text-secondary);
 }
 
 .dashboard-tabs {
