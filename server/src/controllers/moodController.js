@@ -97,11 +97,18 @@ exports.logMood = catchAsync(async (req, res, next) => {
     $inc: { 'stats.totalMoods': 1 },
     'moodProfile.lastAnalyzed': new Date()
   });
-  const streakUpdate = await streakService.updateStreak(req.user._id);
   // Get prediction
   const prediction = await aiService.predictMoodTrend(userId);
 
   logger.info(`Mood logged by user: ${req.user.username}`);
+  let streakUpdate = null;
+  try {
+    streakUpdate = await streakService.updateStreak(userId);
+    logger.info(`Streak updated for user ${userId}: ${streakUpdate.streak} days`);
+  } catch (error) {
+    logger.error('Error updating streak:', error);
+    // Don't fail the whole request if streak update fails
+  }
 
   res.status(201).json({
     status: 'success',

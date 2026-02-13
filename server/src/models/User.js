@@ -79,6 +79,7 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true
     },
+    title:String,
     unlockedAt: {
       type: Date,
       default: Date.now

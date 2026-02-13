@@ -97,7 +97,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/mood', require('./routes/mood'));
 app.use('/api/match', require('./routes/match'));
 app.use('/api/walk', require('./routes/walk'));
-app.use('/api/streak', streakRoutes);
+app.use('/api/streak',require('./routes/streak'));
 
 // ✅ ROOT ROUTE (API Status)
 app.get('/', (req, res) => {

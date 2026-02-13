@@ -75,6 +75,23 @@ export default function MoodLogger({ onMoodLogged }) {
       });
 
       setAnalysis(result.data.analysis);
+      if (result.data.streak) {
+      console.log('Streak updated:', result.data.streak);
+      
+      // Show achievement notification if any
+      if (result.data.streak.newAchievements && 
+          result.data.streak.newAchievements.length > 0) {
+        
+        const achievement = result.data.streak.newAchievements[0];
+        alert(`🎉 Achievement Unlocked!\n\n${achievement.title}\n${achievement.description}`);
+      }
+      
+      // Trigger streak display refresh
+      if (onStreakUpdate) {
+        onStreakUpdate(result.data.streak);
+      }
+    }
+
       setSelectedMood(null);
       setNote('');
       setTags('');

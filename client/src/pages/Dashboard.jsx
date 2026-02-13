@@ -23,7 +23,7 @@ export default function Dashboard() {
         <p>Track your moods, discover patterns, and connect with others</p>
       </div>
       {/* Add streak display */}
-      <StreakDisplay userId={user.id} key={refreshKey} />
+      <StreakDisplay userId={user.id} refreshKey={refreshKey} />
 
       <div className="dashboard-tabs">
         <button
