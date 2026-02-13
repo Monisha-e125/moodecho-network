@@ -11,7 +11,6 @@ const { apiLimiter } = require('./middlewares/rateLimiter');
 const { sanitizeBody, sanitizeQuery } = require('./middlewares/sanitizer');
 const metrics = require('./utils/metrics');
 const performanceMonitor = require('./utils/performance');
-const streakRoutes = require('./routes/streak')
 const app = express();
 
 
@@ -97,7 +96,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/mood', require('./routes/mood'));
 app.use('/api/match', require('./routes/match'));
 app.use('/api/walk', require('./routes/walk'));
-app.use('/api/streak',require('./routes/streak'));
+app.use('/api/streak',require('./routes/streakRoutes'));
 
 // ✅ ROOT ROUTE (API Status)
 app.get('/', (req, res) => {
