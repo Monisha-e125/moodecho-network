@@ -35,9 +35,9 @@ export default function SoundPlayer({ theme, isActive }) {
         { file: 'wind-chimes.mp3', volume: 0.3 }
       ],
       forest: [
-        { file: 'birds.mp3', volume: 70 },
-        { file: 'stream.mp3', volume: 70 },
-        { file: 'leaves.mp3', volume:70 }
+        { file: 'birds.mp3', volume: 0.7 },
+        { file: 'stream.mp3', volume: 0.7 },
+        { file: 'leaves.mp3', volume: 0.7 }
       ],
       mountain: [
         { file: 'wind.mp3', volume: 0.6 },
