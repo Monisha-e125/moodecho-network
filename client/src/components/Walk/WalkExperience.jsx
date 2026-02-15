@@ -4,7 +4,7 @@ import { walkService } from '../../services/walk';
 import { useSocket } from '../../hooks/useSocket';
 import { useAuth } from '../../context/AuthContext';
 import '../../assets/styles/walk.css';
-
+import SoundPlayer from './SoundPlayer';
 export default function WalkExperience() {
   const { walkId } = useParams();
   const { user } = useAuth();
@@ -123,6 +123,13 @@ export default function WalkExperience() {
       }}>
         <div className="ambient-particles"></div>
       </div>
+       {/* ADD THIS: Sound Player */}
+      {walk && (
+        <SoundPlayer 
+          theme={walk.theme}      // Which theme? (ocean, rain, etc.)
+          isActive={started}      // Should sounds play? (true/false)
+        />
+      )}
 
       <div className="walk-content">
         <div className="walk-header">
